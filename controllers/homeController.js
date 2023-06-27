@@ -5,15 +5,25 @@ const path = require("path");
 const FILES_PATH = path.join("/uploads/csv");
 
 
-module.exports.home = (req, res) => {
+module.exports.home = async (req, res) => {
+    try {
+        let files = await File.find({})
+            .sort('-createdAt');
 
-    return res.render('home', {
-        title: 'CSVReader | Home'
-    })
+        return res.render('home', {
+            title: 'CSVReader | Home',
+            files: files,
+        });
+    } catch (err) {
+        console.log('error ', err);
+    }
+
 }
 
 module.exports.uploadFile = async function (req, res) {
+    console.log('hi');
     try {
+
         File.uploadCsv(req, res, async function (err) {
             if (err) {
                 console.log('****MULTER Error', err);
