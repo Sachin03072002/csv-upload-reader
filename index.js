@@ -1,11 +1,17 @@
 //acquiring express
 const express = require("express");
-const router = require('./routes/index');
-const ejs = require('ejs');
+const expressLayouts = require('express-ejs-layouts');
 const app = express();
 const port = 8000;
-const expressLayouts = require('express-ejs-layouts');
+
+//acquiroing the db
+const db = require('./config/mongoose');
+//including the static files
 app.use(express.static('./assets'));
+
+//route for csv path
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 app.use(expressLayouts)
 //extract styles and script form sub pages into the  layouts
 app.set('layout extractStyles', true);
@@ -16,6 +22,7 @@ app.get("/", require('./routes/index'));
 //set up the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
+app.use(express.urlencoded());
 app.get('/', (req, res) => {
     res.render('index', { title: "Home Page" });
 })
