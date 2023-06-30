@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const homeController = require("../controllers/homeController");
+const fileController = require("../controllers/fileController");
 
-router.post('/upload', homeController.uploadFile)
-router.get('/filecsv', homeController.showFile);
-router.get('/deleteFile/:id', homeController.deleteFile);
+router.post('/uploadFile', fileController.uploadFile)
+router.get('/filecsv', fileController.showFile);
+router.get('/deleteFile/:id', fileController.deleteFile);
+
+
 module.exports = router;

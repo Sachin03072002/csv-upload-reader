@@ -1,3 +1,8 @@
+//sorting code here
+const table = document.getElementById('sortTable');
+const headers = table.querySelectorAll("th");
+const rows = table.querySelectorAll("tr");
+
 function searchTable() {
     let input, filter, found, table, tr, td, i, j;
     input = document.getElementById("search");
@@ -25,10 +30,7 @@ function searchTable() {
     }
 }
 
-//sorting code here
-const table = document.getElementById('sortTable');
-const headers = table.querySelectorAll("th");
-const rows = table.querySelectorAll("tr");
+
 
 headers.forEach((header, headerIndex) => {
     header.addEventListener("click", () => {
@@ -44,7 +46,7 @@ const transform = function (index, content) {
             return parseFloat(content);
         case "string":
         default:
-            return constants;
+            return content;
     }
 };
 
@@ -54,7 +56,7 @@ console.log(directions);
 
 function sortColumn(headersIndex) {
     //check the direction asc or desc
-    const direction = directions[headersIndex] || "Asc";
+    const direction = directions[headersIndex] || "asc";
     const multiplier = direction == "asc" ? 1 : -1;
     changeIcon(direction, headersIndex);
     //lets make new instance of rows

@@ -2,43 +2,63 @@
 <div class="home-container">
     <!-- File Upload Form -->
     <div class="file-container">
-        <form action="/file/upload" enctype="multipart/form-data" method="POST">
-
+        <form action="/file/uploadFile" enctype="multipart/form-data" method="POST">
             <!-- File Drop Area -->
             <div class="file-drop-area">
                 <span class="fake-btn">Choose files</span>
                 <span class="file-msg">or drag and drop files here</span>
-                <input class="file-input" type="file" name="file" id="formFileSm" placeholder="Upload your CSV file">
-
+                <input class="file-input form-control-file" type="file" name="uploaded_file" id="formFileSm"
+                    placeholder="Upload your CSV file">
             </div>
             <!-- Submit Button -->
-            <div class="submit-btn ">
-                <input id="file-submit" type="submit" value="Upload">
-
+            <div class="submit-btn">
+                <button id="file-submit" type="submit" value="Upload"></button>
             </div>
-
-
         </form>
     </div>
     <!-- File List Container -->
-
+    <div class="file-header">
+        Uploaded Files
+    </div>
     <div class="file-list-container">
-        <%if(files.length>0){%>
-            <% for(file of files){ %>
+        <% if (files.length> 0) { %>
+            <div class="file-list-header" style="background-color: cornflowerblue;">
+                <div class="file-name-container">
+                    Name
+                </div>
+                <div class="file-name-container">
+                    Date
+                </div>
+                <div class="file-name-container">
+                    Time
+                </div>
+                <div class="file-name-container">
+                    View
+                </div>
+                <div class="file-name-container">
+                    Delete
+                </div>
+            </div>
+            <% for (file of files) { %>
                 <!-- File List Item -->
-
-                <div class="file-list">
+                <div class="file-list-header">
+                    <div class="file-name-container">
+                        <%= file.originalName %>
+                    </div>
+                    <div class="file-name-container">
+                        <%= extractDateAndTime(file.createdAt).date %>
+                    </div>
+                    <div class="file-name-container">
+                        <%= extractDateAndTime(file.createdAt).time %>
+                    </div>
                     <div class="file-name-container">
                         <a href="/show/filecsv/?file_id=<%= file._id %>&page=1">
-                            <%=file.originalName%>
+                            <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-
                     </div>
-                    <!-- delete button -->
-
                     <div class="delete-btn">
                         <a href="/delete/deleteFile/<%= file.file %>">
-                            <button class="btn btn-danger" style="font-size: 0.8rem;">Delete</button>
+                            <i class="fa-solid fa-trash-can"></i>
                         </a>
                     </div>
                 </div>

@@ -114,20 +114,36 @@
   overflow: hidden;
 }
 
-.file-name-container a {
+.file-name-container a i {
   text-decoration: none;
-  color: white;
+  color: black;
+}
+.delete-btn a {
+  color: red;
+  padding: 1rem;
+  margin-left: 1rem;
 }
 
-.delete-btn {
-  margin: 0 30px;
-}
+.file-list-header {
+  display: grid;
+  grid-template-columns: 5fr 3fr 3fr 2fr 2fr;
+  width: 100vw;
+  position: relative;
 
-.delete-btn button {
-  padding: 5px 12px;
-  background: transparent;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.file-header {
+  width: 100vw;
+  margin-bottom: 0;
+  position: fixed;
+  top: 17rem;
+  height: 2.5rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background: cornflowerblue;
   color: white;
-  outline: none;
-  border: 1px solid #5224ff;
-  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
